@@ -1,6 +1,6 @@
 BEGIN;
 
-INSERT INTO teams (name)
+INSERT INTO teams (leagueId, name)
 VALUES
     (1, 'Supers'),
     (1, 'Importants'),
