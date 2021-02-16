@@ -64,7 +64,7 @@ gamesRouter
               message: `Request body must contain missing element`
             }
           })
-    
+        
         GamesService.updateGame(
           req.app.get('db'),
           req.params.id,
