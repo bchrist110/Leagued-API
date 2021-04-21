@@ -2,8 +2,8 @@
 
 Website: https://leaguedreact-ji6vi8syk-bchrist110.vercel.app/
 
-##API Documentation
-###Leagues
+## API Documentation
+### Leagues
 
 ```
 URL: /api/leagues
