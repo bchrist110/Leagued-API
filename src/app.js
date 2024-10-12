@@ -17,7 +17,10 @@ const morganOption = (NODE_ENV === 'production')
 
 app.use(morgan(morganOption))
 app.use(helmet())
-app.use(cors())
+app.use(cors({
+    origin: '*', // Allow all origins (for testing purposes)
+    credentials: false,
+  }));
 
 app.use('/api/leagues', leaguesRouter)
 app.use('/api/teams', teamsRouter)
