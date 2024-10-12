@@ -8,7 +8,6 @@
 SET statement_timeout = 0;
 SET lock_timeout = 0;
 SET idle_in_transaction_session_timeout = 0;
-SET transaction_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SELECT pg_catalog.set_config('search_path', '', false);
@@ -247,220 +246,165 @@ ALTER TABLE ONLY public.knex_migrations_lock ALTER COLUMN index SET DEFAULT next
 -- Data for Name: games; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.games (id, leagueid, hometeamid, awayteamid, date, name, hometeamscore, hometeamassists, hometeamthrees, hometeamsteals, hometeamblocks, awayteamscore, awayteamassists, awayteamthrees, awayteamsteals, awayteamblocks) FROM stdin;
-161	1	1	2	1/1	Game 1	0	0	0	0	0	0	0	0	0	0
-162	1	3	4	1/1	Game 1	0	0	0	0	0	0	0	0	0	0
-163	1	1	3	1/2	Game 2	0	0	0	0	0	0	0	0	0	0
-164	1	2	4	1/2	Game 2	0	0	0	0	0	0	0	0	0	0
-165	1	4	1	1/3	Game 3	0	0	0	0	0	0	0	0	0	0
-166	1	3	2	1/3	Game 3	0	0	0	0	0	0	0	0	0	0
-167	1	2	1	1/4	Game 4	0	0	0	0	0	0	0	0	0	0
-168	1	4	3	1/4	Game 4	0	0	0	0	0	0	0	0	0	0
-169	2	5	6	1/1	Game 1	0	0	0	0	0	0	0	0	0	0
-170	2	7	8	1/1	Game 1	0	0	0	0	0	0	0	0	0	0
-171	2	5	7	1/2	Game 2	0	0	0	0	0	0	0	0	0	0
-172	2	6	8	1/2	Game 2	0	0	0	0	0	0	0	0	0	0
-173	2	8	5	1/3	Game 3	0	0	0	0	0	0	0	0	0	0
-174	2	7	6	1/3	Game 3	0	0	0	0	0	0	0	0	0	0
-175	2	6	5	1/4	Game 4	0	0	0	0	0	0	0	0	0	0
-176	2	8	7	1/4	Game 4	0	0	0	0	0	0	0	0	0	0
-177	3	9	10	1/1	Game 1	0	0	0	0	0	0	0	0	0	0
-178	3	11	12	1/1	Game 1	0	0	0	0	0	0	0	0	0	0
-179	3	9	11	1/2	Game 2	0	0	0	0	0	0	0	0	0	0
-180	3	10	12	1/2	Game 2	0	0	0	0	0	0	0	0	0	0
-181	3	12	9	1/3	Game 3	0	0	0	0	0	0	0	0	0	0
-182	3	11	10	1/3	Game 3	0	0	0	0	0	0	0	0	0	0
-183	3	10	9	1/4	Game 4	0	0	0	0	0	0	0	0	0	0
-184	3	12	11	1/4	Game 4	0	0	0	0	0	0	0	0	0	0
-185	4	13	14	1/1	Game 1	0	0	0	0	0	0	0	0	0	0
-186	4	15	16	1/1	Game 1	0	0	0	0	0	0	0	0	0	0
-187	4	13	15	1/2	Game 2	0	0	0	0	0	0	0	0	0	0
-188	4	14	16	1/2	Game 2	0	0	0	0	0	0	0	0	0	0
-189	4	16	13	1/3	Game 3	0	0	0	0	0	0	0	0	0	0
-190	4	15	14	1/3	Game 3	0	0	0	0	0	0	0	0	0	0
-191	4	14	13	1/4	Game 4	0	0	0	0	0	0	0	0	0	0
-192	4	16	15	1/4	Game 4	0	0	0	0	0	0	0	0	0	0
-\.
+INSERT INTO leagues (name)
+VALUES
+    ('Tater Tots (8-10)'),
+    ('Flyers (11-12)'),
+    ('Trappers (13-15)'),
+    ('Killas (16-18)');
 
+INSERT INTO teams (leagueId, name)
+VALUES
+    (1, 'Supers'),
+    (1, 'Importants'),
+    (1, 'Spangleys'),
+    (1, 'Terrors'),
+    (2, 'Mirrors'),
+    (2, 'Tables'),
+    (2, 'Times'),
+    (2, 'Kitties'),
+    (3, 'Bobs'),
+    (3, 'Sleeves'),
+    (3, 'Bears'),
+    (3, 'Bad Boys'),
+    (4, 'Trippys'),
+    (4, 'Snows'),
+    (4, 'Buyers'),
+    (4, 'Consumers');
 
---
--- Data for Name: knex_migrations; Type: TABLE DATA; Schema: public; Owner: postgres
---
+INSERT INTO games (leagueId,homeTeamId,awayTeamId,date,name,homeTeamScore,homeTeamAssists,homeTeamThrees,homeTeamSteals,homeTeamBlocks,awayTeamScore,awayTeamAssists,awayTeamThrees,awayTeamSteals,awayTeamBlocks)
+VALUES
+    (1,1,2,'1/1','Game 1',0,0,0,0,0,0,0,0,0,0),
+    (1,3,4,'1/1','Game 1',0,0,0,0,0,0,0,0,0,0),
+    (1,1,3,'1/2','Game 2',0,0,0,0,0,0,0,0,0,0),
+    (1,2,4,'1/2','Game 2',0,0,0,0,0,0,0,0,0,0),
+    (1,4,1,'1/3','Game 3',0,0,0,0,0,0,0,0,0,0),
+    (1,3,2,'1/3','Game 3',0,0,0,0,0,0,0,0,0,0),
+    (1,2,1,'1/4','Game 4',0,0,0,0,0,0,0,0,0,0),
+    (1,4,3,'1/4','Game 4',0,0,0,0,0,0,0,0,0,0),
+    (2,5,6,'1/1','Game 1',0,0,0,0,0,0,0,0,0,0),
+    (2,7,8,'1/1','Game 1',0,0,0,0,0,0,0,0,0,0),
+    (2,5,7,'1/2','Game 2',0,0,0,0,0,0,0,0,0,0),
+    (2,6,8,'1/2','Game 2',0,0,0,0,0,0,0,0,0,0),
+    (2,8,5,'1/3','Game 3',0,0,0,0,0,0,0,0,0,0),
+    (2,7,6,'1/3','Game 3',0,0,0,0,0,0,0,0,0,0),
+    (2,6,5,'1/4','Game 4',0,0,0,0,0,0,0,0,0,0),
+    (2,8,7,'1/4','Game 4',0,0,0,0,0,0,0,0,0,0),
+    (3,9,10,'1/1','Game 1',0,0,0,0,0,0,0,0,0,0),
+    (3,11,12,'1/1','Game 1',0,0,0,0,0,0,0,0,0,0),
+    (3,9,11,'1/2','Game 2',0,0,0,0,0,0,0,0,0,0),
+    (3,10,12,'1/2','Game 2',0,0,0,0,0,0,0,0,0,0),
+    (3,12,9,'1/3','Game 3',0,0,0,0,0,0,0,0,0,0),
+    (3,11,10,'1/3','Game 3',0,0,0,0,0,0,0,0,0,0),
+    (3,10,9,'1/4','Game 4',0,0,0,0,0,0,0,0,0,0),
+    (3,12,11,'1/4','Game 4',0,0,0,0,0,0,0,0,0,0),
+    (4,13,14,'1/1','Game 1',0,0,0,0,0,0,0,0,0,0),
+    (4,15,16,'1/1','Game 1',0,0,0,0,0,0,0,0,0,0),
+    (4,13,15,'1/2','Game 2',0,0,0,0,0,0,0,0,0,0),
+    (4,14,16,'1/2','Game 2',0,0,0,0,0,0,0,0,0,0),
+    (4,16,13,'1/3','Game 3',0,0,0,0,0,0,0,0,0,0),
+    (4,15,14,'1/3','Game 3',0,0,0,0,0,0,0,0,0,0),
+    (4,14,13,'1/4','Game 4',0,0,0,0,0,0,0,0,0,0),
+    (4,16,15,'1/4','Game 4',0,0,0,0,0,0,0,0,0,0);
 
-COPY public.knex_migrations (id, name, batch, migration_time) FROM stdin;
-\.
-
-
---
--- Data for Name: knex_migrations_lock; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.knex_migrations_lock (index, is_locked) FROM stdin;
-1	0
-\.
-
-
---
--- Data for Name: leagues; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.leagues (id, name) FROM stdin;
-1	Tater Tots (8-10)
-2	Flyers (11-12)
-3	Trappers (13-15)
-4	Killas (16-18)
-5	Tater Tots (8-10)
-6	Flyers (11-12)
-7	Trappers (13-15)
-8	Killas (16-18)
-9	Tater Tots (8-10)
-10	Flyers (11-12)
-11	Trappers (13-15)
-12	Killas (16-18)
-13	Tater Tots (8-10)
-14	Flyers (11-12)
-15	Trappers (13-15)
-16	Killas (16-18)
-\.
-
-
---
--- Data for Name: players; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.players (id, leagueid, teamid, role, city, phone, name) FROM stdin;
-1	1	1	Player	Bellevue	(298)234-4897	Jimmy Taylor
-2	1	1	Player	Redmond	(298)234-2397	Tim Donald
-3	1	1	Player	Auburn	(298)634-4897	Brandon Filmore
-4	1	1	Player	Bellevue	(292)234-4897	Carl Lozenge
-5	1	1	Player	Bellevue	(298)234-4494	Tommy Table
-6	1	1	Coach	Bellevue	(298)662-4897	Jim Varmand
-7	1	2	Player	Bellevue	(298)234-4897	John Taylor
-8	1	2	Player	Redmond	(298)234-4397	Timmy Donald
-9	1	2	Player	Auburn	(298)634-4897	Brandino Filmore
-10	1	2	Player	Bellevue	(292)334-4897	Carlos Lozenge
-11	1	2	Player	Kent	(298)234-4434	Tommy Tom Table
-12	1	2	Coach	Issaquah	(298)662-4897	Jimmy R. Vamanos
-13	1	3	Player	Bellevue	(298)237-4897	Johnny Taylor
-14	1	3	Player	Kirkland	(298)232-4397	Kimmy Donald
-15	1	3	Player	Auburn	(298)634-5897	Trent Filmore
-16	1	3	Player	Bellevue	(292)233-4897	Farla Lozenge
-17	1	3	Player	Tacoma	(298)234-3494	Mickey Table
-18	1	3	Coach	Bellevue	(298)669-4897	Terrell Varmand
-19	1	4	Player	Seattle	(298)234-4597	Sammy Taylor
-20	1	4	Player	Redmond	(298)264-4697	Lorenzo Donald
-21	1	4	Player	Auburn	(298)434-4897	Fatima Filmore
-22	1	4	Player	Kimberly	(291)234-4897	Aaron Lozenge
-23	1	4	Player	Everett	(298)234-8794	Kevin Table
-24	1	4	Coach	Bellevue	(298)662-2397	Jorge Varmand
-25	2	5	Player	Bellevue	(298)234-4897	Jimmy Taylor
-26	2	5	Player	Redmond	(298)234-4397	Tim Donald
-27	2	5	Player	Auburn	(298)634-4897	Brandon Filmore
-28	2	5	Player	Bellevue	(292)234-4897	Carl Lozenge
-29	2	5	Player	Bellevue	(298)234-4494	Tommy Table
-30	2	5	Coach	Bellevue	(298)662-4897	Jim Varmand
-31	2	6	Player	Bellevue	(298)234-4897	John Taylor
-32	2	6	Player	Redmond	(298)234-4397	Timmy Donald
-33	2	6	Player	Auburn	(298)634-4897	Brandino Filmore
-34	2	6	Player	Bellevue	(292)334-4897	Carlos Lozenge
-35	2	6	Player	Kent	(298)234-4434	Tommy Tom Table
-36	2	6	Coach	Issaquah	(298)662-4897	Jimmy R. Vamanos
-37	2	7	Player	Bellevue	(298)237-4897	Johnny Taylor
-38	2	7	Player	Kirkland	(298)232-4397	Kimmy Donald
-39	2	7	Player	Auburn	(298)634-5897	Trent Filmore
-40	2	7	Player	Bellevue	(292)233-4897	FArla Lozenge
-41	2	7	Player	Tacoma	(298)234-3494	Mickey Table
-42	2	7	Coach	Bellevue	(298)669-4897	Terrell Varmand
-43	2	8	Player	Seattle	(298)234-4597	Sammy Taylor
-44	2	8	Player	Redmond	(298)264-4697	Lorenzo Donald
-45	2	8	Player	Auburn	(298)434-4897	Fatima Filmore
-46	2	8	Player	Kimberly	(291)234-4897	Aaron Lozenge
-47	2	8	Player	Everett	(298)234-8794	Kevin Table
-48	2	8	Coach	Bellevue	(298)662-2397	Jorge Varmand
-49	3	9	Player	Bellevue	(298)234-4897	Jimmy Taylor
-50	3	9	Player	Redmond	(298)234-4297	Tim Donald
-51	3	9	Player	Auburn	(298)634-4897	Brandon Filmore
-52	3	9	Player	Bellevue	(292)234-4897	Carl Lozenge
-53	3	9	Player	Bellevue	(298)234-4494	Tommy Table
-54	3	9	Coach	Bellevue	(298)662-4897	Jim Varmand
-55	3	10	Player	Bellevue	(298)234-4897	John Taylor
-56	3	10	Player	Redmond	(298)234-4397	Timmy Donald
-57	3	10	Player	Auburn	(298)634-4897	Brandino Filmore
-58	3	10	Player	Bellevue	(292)334-4897	Carlos Lozenge
-59	3	10	Player	Kent	(298)234-4434	Tommy Tom Table
-60	3	10	Coach	Issaquah	(298)662-4897	Jimmy R. Vamanos
-61	3	11	Player	Bellevue	(298)237-4897	Johnny Taylor
-62	3	11	Player	Kirkland	(298)232-4397	Kimmy Donald
-63	3	11	Player	Auburn	(298)634-5897	Trent Filmore
-64	3	11	Player	Bellevue	(292)233-4897	FArla Lozenge
-65	3	11	Player	Tacoma	(298)234-3494	Mickey Table
-66	3	11	Coach	Bellevue	(298)669-4897	Terrell Varmand
-67	3	12	Player	Seattle	(298)234-4597	Sammy Taylor
-68	3	12	Player	Redmond	(298)264-4697	Lorenzo Donald
-69	3	12	Player	Auburn	(298)434-4897	Fatima Filmore
-70	3	12	Player	Kimberly	(291)234-4897	Aaron Lozenge
-71	3	12	Player	Everett	(298)234-8794	Kevin Table
-72	3	12	Coach	Bellevue	(298)662-2397	Jorge Varmand
-73	4	13	Player	Bellevue	(298)234-4897	Jimmy Taylor
-74	4	13	Player	Redmond	(298)234-4297	Tim Donald
-75	4	13	Player	Auburn	(298)634-4897	Brandon Filmore
-76	4	13	Player	Bellevue	(292)234-4897	Carl Lozenge
-77	4	13	Player	Bellevue	(298)234-4494	Tommy Table
-78	4	13	Coach	Bellevue	(298)662-4897	Jim Varmand
-79	4	14	Player	Bellevue	(298)234-4897	John Taylor
-80	4	14	Player	Redmond	(298)234-4237	Timmy Donald
-81	4	14	Player	Auburn	(298)634-4897	Brandino Filmore
-82	4	14	Player	Bellevue	(292)334-4897	Carlos Lozenge
-83	4	14	Player	Kent	(298)234-4434	Tommy Tom Table
-84	4	14	Coach	Issaquah	(298)662-4897	Jimmy R. Vamanos
-85	4	15	Player	Bellevue	(298)237-4897	Johnny Taylor
-86	4	15	Player	Kirkland	(298)232-4239	Kimmy Donald
-87	4	15	Player	Auburn	(298)634-5897	Trent Filmore
-88	4	15	Player	Bellevue	(292)233-4897	FArla Lozenge
-89	4	15	Player	Tacoma	(298)234-3494	Mickey Table
-90	4	15	Coach	Bellevue	(298)669-4897	Terrell Varmand
-91	4	16	Player	Seattle	(298)234-4597	Sammy Taylor
-92	4	16	Player	Redmond	(298)264-4697	Lorenzo Donald
-93	4	16	Player	Auburn	(298)434-4897	Fatima Filmore
-94	4	16	Player	Kimberly	(291)234-4897	Aaron Lozenge
-95	4	16	Player	Everett	(298)234-8794	Kevin Table
-96	4	16	Coach	Bellevue	(298)662-2397	Jorge Varmand
-\.
-
-
---
--- Data for Name: schemaversion; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.schemaversion (version, name, md5, run_at) FROM stdin;
-0	\N	\N	\N
-1	create_leagues	6e9600b4c31558fd5027b941ff474209	2024-10-12 16:22:27.271-05
-\.
-
-
---
--- Data for Name: teams; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.teams (id, leagueid, name) FROM stdin;
-1	1	Supers
-2	1	Importants
-3	1	Spangleys
-4	1	Terrors
-5	2	Mirrors
-6	2	Tables
-7	2	Times
-8	2	Kitties
-9	3	Bobs
-10	3	Sleeves
-11	3	Bears
-12	3	Bad Boys
-13	4	Trippys
-14	4	Snows
-15	4	Buyers
-16	4	Consumers
-\.
-
+INSERT INTO players (leagueId, teamId, role, city, phone, name)
+VALUES
+    (1, 1, 'Player', 'Bellevue', '(298)234-4897', 'Jimmy Taylor'),
+    (1, 1, 'Player', 'Redmond', '(298)234-2397', 'Tim Donald'),
+    (1, 1, 'Player', 'Auburn', '(298)634-4897', 'Brandon Filmore'),
+    (1, 1, 'Player', 'Bellevue', '(292)234-4897', 'Carl Lozenge'),
+    (1, 1, 'Player', 'Bellevue', '(298)234-4494', 'Tommy Table'),
+    (1, 1, 'Coach', 'Bellevue', '(298)662-4897', 'Jim Varmand'),
+    (1, 2, 'Player', 'Bellevue', '(298)234-4897', 'John Taylor'),
+    (1, 2, 'Player', 'Redmond', '(298)234-4397', 'Timmy Donald'),
+    (1, 2, 'Player', 'Auburn', '(298)634-4897', 'Brandino Filmore'),
+    (1, 2, 'Player', 'Bellevue', '(292)334-4897', 'Carlos Lozenge'),
+    (1, 2, 'Player', 'Kent', '(298)234-4434', 'Tommy Tom Table'),
+    (1, 2, 'Coach', 'Issaquah', '(298)662-4897', 'Jimmy R. Vamanos'),
+    (1, 3, 'Player', 'Bellevue', '(298)237-4897', 'Johnny Taylor'),
+    (1, 3, 'Player', 'Kirkland', '(298)232-4397', 'Kimmy Donald'),
+    (1, 3, 'Player', 'Auburn', '(298)634-5897', 'Trent Filmore'),
+    (1, 3, 'Player', 'Bellevue', '(292)233-4897', 'Farla Lozenge'),
+    (1, 3, 'Player', 'Tacoma', '(298)234-3494', 'Mickey Table'),
+    (1, 3, 'Coach', 'Bellevue', '(298)669-4897', 'Terrell Varmand'),
+    (1, 4, 'Player', 'Seattle', '(298)234-4597', 'Sammy Taylor'),
+    (1, 4, 'Player', 'Redmond', '(298)264-4697', 'Lorenzo Donald'),
+    (1, 4, 'Player', 'Auburn', '(298)434-4897', 'Fatima Filmore'),
+    (1, 4, 'Player', 'Kimberly', '(291)234-4897', 'Aaron Lozenge'),
+    (1, 4, 'Player', 'Everett', '(298)234-8794', 'Kevin Table'),
+    (1, 4, 'Coach', 'Bellevue', '(298)662-2397', 'Jorge Varmand'),
+    (2, 5, 'Player', 'Bellevue', '(298)234-4897', 'Jimmy Taylor'),
+    (2, 5, 'Player', 'Redmond', '(298)234-4397', 'Tim Donald'),
+    (2, 5, 'Player', 'Auburn', '(298)634-4897', 'Brandon Filmore'),
+    (2, 5, 'Player', 'Bellevue', '(292)234-4897', 'Carl Lozenge'),
+    (2, 5, 'Player', 'Bellevue', '(298)234-4494', 'Tommy Table'),
+    (2, 5, 'Coach', 'Bellevue', '(298)662-4897', 'Jim Varmand'),
+    (2, 6, 'Player', 'Bellevue', '(298)234-4897', 'John Taylor'),
+    (2, 6, 'Player', 'Redmond', '(298)234-4397', 'Timmy Donald'),
+    (2, 6, 'Player', 'Auburn', '(298)634-4897', 'Brandino Filmore'),
+    (2, 6, 'Player', 'Bellevue', '(292)334-4897', 'Carlos Lozenge'),
+    (2, 6, 'Player', 'Kent', '(298)234-4434', 'Tommy Tom Table'),
+    (2, 6, 'Coach', 'Issaquah', '(298)662-4897', 'Jimmy R. Vamanos'),
+    (2, 7, 'Player', 'Bellevue', '(298)237-4897', 'Johnny Taylor'),
+    (2, 7, 'Player', 'Kirkland', '(298)232-4397', 'Kimmy Donald'),
+    (2, 7, 'Player', 'Auburn', '(298)634-5897', 'Trent Filmore'),
+    (2, 7, 'Player', 'Bellevue', '(292)233-4897', 'FArla Lozenge'),
+    (2, 7, 'Player', 'Tacoma', '(298)234-3494', 'Mickey Table'),
+    (2, 7, 'Coach', 'Bellevue', '(298)669-4897', 'Terrell Varmand'),
+    (2, 8, 'Player', 'Seattle', '(298)234-4597', 'Sammy Taylor'),
+    (2, 8, 'Player', 'Redmond', '(298)264-4697', 'Lorenzo Donald'),
+    (2, 8, 'Player', 'Auburn', '(298)434-4897', 'Fatima Filmore'),
+    (2, 8, 'Player', 'Kimberly', '(291)234-4897', 'Aaron Lozenge'),
+    (2, 8, 'Player', 'Everett', '(298)234-8794', 'Kevin Table'),
+    (2, 8, 'Coach', 'Bellevue', '(298)662-2397', 'Jorge Varmand'),
+    (3, 9, 'Player', 'Bellevue', '(298)234-4897', 'Jimmy Taylor'),
+    (3, 9, 'Player', 'Redmond', '(298)234-4297', 'Tim Donald'),
+    (3, 9, 'Player', 'Auburn', '(298)634-4897', 'Brandon Filmore'),
+    (3, 9, 'Player', 'Bellevue', '(292)234-4897', 'Carl Lozenge'),
+    (3, 9, 'Player', 'Bellevue', '(298)234-4494', 'Tommy Table'),
+    (3, 9, 'Coach', 'Bellevue', '(298)662-4897', 'Jim Varmand'),
+    (3, 10, 'Player', 'Bellevue', '(298)234-4897', 'John Taylor'),
+    (3, 10, 'Player', 'Redmond', '(298)234-4397', 'Timmy Donald'),
+    (3, 10, 'Player', 'Auburn', '(298)634-4897', 'Brandino Filmore'),
+    (3, 10, 'Player', 'Bellevue', '(292)334-4897', 'Carlos Lozenge'),
+    (3, 10, 'Player', 'Kent', '(298)234-4434', 'Tommy Tom Table'),
+    (3, 10, 'Coach', 'Issaquah', '(298)662-4897', 'Jimmy R. Vamanos'),
+    (3, 11, 'Player', 'Bellevue', '(298)237-4897', 'Johnny Taylor'),
+    (3, 11, 'Player', 'Kirkland', '(298)232-4397', 'Kimmy Donald'),
+    (3, 11, 'Player', 'Auburn', '(298)634-5897', 'Trent Filmore'),
+    (3, 11, 'Player', 'Bellevue', '(292)233-4897', 'FArla Lozenge'),
+    (3, 11, 'Player', 'Tacoma', '(298)234-3494', 'Mickey Table'),
+    (3, 11, 'Coach', 'Bellevue', '(298)669-4897', 'Terrell Varmand'),
+    (3, 12, 'Player', 'Seattle', '(298)234-4597', 'Sammy Taylor'),
+    (3, 12, 'Player', 'Redmond', '(298)264-4697', 'Lorenzo Donald'),
+    (3, 12, 'Player', 'Auburn', '(298)434-4897', 'Fatima Filmore'),
+    (3, 12, 'Player', 'Kimberly', '(291)234-4897', 'Aaron Lozenge'),
+    (3, 12, 'Player', 'Everett', '(298)234-8794', 'Kevin Table'),
+    (3, 12, 'Coach', 'Bellevue', '(298)662-2397', 'Jorge Varmand'),
+    (4, 13, 'Player', 'Bellevue', '(298)234-4897', 'Jimmy Taylor'),
+    (4, 13, 'Player', 'Redmond', '(298)234-4297', 'Tim Donald'),
+    (4, 13, 'Player', 'Auburn', '(298)634-4897', 'Brandon Filmore'),
+    (4, 13, 'Player', 'Bellevue', '(292)234-4897', 'Carl Lozenge'),
+    (4, 13, 'Player', 'Bellevue', '(298)234-4494', 'Tommy Table'),
+    (4, 13, 'Coach', 'Bellevue', '(298)662-4897', 'Jim Varmand'),
+    (4, 14, 'Player', 'Bellevue', '(298)234-4897', 'John Taylor'),
+    (4, 14, 'Player', 'Redmond', '(298)234-4237', 'Timmy Donald'),
+    (4, 14, 'Player', 'Auburn', '(298)634-4897', 'Brandino Filmore'),
+    (4, 14, 'Player', 'Bellevue', '(292)334-4897', 'Carlos Lozenge'),
+    (4, 14, 'Player', 'Kent', '(298)234-4434', 'Tommy Tom Table'),
+    (4, 14, 'Coach', 'Issaquah', '(298)662-4897', 'Jimmy R. Vamanos'),
+    (4, 15, 'Player', 'Bellevue', '(298)237-4897', 'Johnny Taylor'),
+    (4, 15, 'Player', 'Kirkland', '(298)232-4239', 'Kimmy Donald'),
+    (4, 15, 'Player', 'Auburn', '(298)634-5897', 'Trent Filmore'),
+    (4, 15, 'Player', 'Bellevue', '(292)233-4897', 'FArla Lozenge'),
+    (4, 15, 'Player', 'Tacoma', '(298)234-3494', 'Mickey Table'),
+    (4, 15, 'Coach', 'Bellevue', '(298)669-4897', 'Terrell Varmand'),
+    (4, 16, 'Player', 'Seattle', '(298)234-4597', 'Sammy Taylor'),
+    (4, 16, 'Player', 'Redmond', '(298)264-4697', 'Lorenzo Donald'),
+    (4, 16, 'Player', 'Auburn', '(298)434-4897', 'Fatima Filmore'),
+    (4, 16, 'Player', 'Kimberly', '(291)234-4897', 'Aaron Lozenge'),
+    (4, 16, 'Player', 'Everett', '(298)234-8794', 'Kevin Table'),
+    (4, 16, 'Coach', 'Bellevue', '(298)662-2397', 'Jorge Varmand');
 
 --
 -- Name: games_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
