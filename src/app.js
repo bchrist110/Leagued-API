@@ -36,6 +36,11 @@ app.get('/', (req, res) => {
     res.send('Hello, world!')
 })
 
+app.use((req, res, next) => {
+    console.log(`${req.method} request for '${req.url}'`);
+    next();
+});
+
 app.use(function errorHandler(error, req, res, next) {
     let response
     if (NODE_ENV === 'production') {
